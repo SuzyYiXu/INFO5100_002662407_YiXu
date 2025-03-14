@@ -1,0 +1,45 @@
+FullTimeStudent1 - Average Quiz Score: 46.93333333333333
+FullTimeStudent2 - Average Quiz Score: 44.13333333333333
+FullTimeStudent3 - Average Quiz Score: 46.0
+FullTimeStudent4 - Average Quiz Score: 37.333333333333336
+FullTimeStudent5 - Average Quiz Score: 46.86666666666667
+FullTimeStudent6 - Average Quiz Score: 48.0
+FullTimeStudent7 - Average Quiz Score: 53.06666666666667
+FullTimeStudent8 - Average Quiz Score: 59.13333333333333
+FullTimeStudent9 - Average Quiz Score: 40.666666666666664
+FullTimeStudent10 - Average Quiz Score: 40.733333333333334
+PartTimeStudent1 - Average Quiz Score: 60.266666666666666
+PartTimeStudent2 - Average Quiz Score: 48.86666666666667
+PartTimeStudent3 - Average Quiz Score: 48.0
+PartTimeStudent4 - Average Quiz Score: 49.266666666666666
+PartTimeStudent5 - Average Quiz Score: 56.13333333333333
+PartTimeStudent6 - Average Quiz Score: 55.13333333333333
+PartTimeStudent7 - Average Quiz Score: 45.53333333333333
+PartTimeStudent8 - Average Quiz Score: 54.666666666666664
+PartTimeStudent9 - Average Quiz Score: 38.6
+PartTimeStudent10 - Average Quiz Score: 48.733333333333334
+Sorted Quiz Scores: [0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 8, 9, 9, 10, 10, 10, 10, 11, 12, 13, 13, 14, 14, 14, 15, 15, 15, 15, 15, 15, 16, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 24, 24, 25, 25, 25, 26, 26, 26, 26, 27, 27, 27, 27, 28, 28, 29, 29, 29, 30, 30, 31, 31, 31, 31, 32, 33, 33, 34, 34, 35, 35, 36, 36, 37, 37, 37, 38, 38, 39, 39, 39, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 41, 41, 42, 42, 42, 43, 43, 44, 44, 44, 44, 44, 44, 44, 44, 45, 45, 46, 46, 46, 47, 47, 48, 48, 48, 49, 49, 49, 49, 49, 49, 49, 50, 50, 50, 50, 50, 50, 50, 50, 50, 51, 51, 51, 52, 52, 53, 53, 53, 53, 53, 53, 54, 54, 54, 54, 54, 54, 54, 55, 55, 55, 55, 55, 56, 56, 56, 56, 56, 57, 57, 57, 57, 58, 58, 59, 59, 60, 60, 60, 62, 62, 62, 62, 62, 63, 63, 63, 64, 64, 65, 65, 65, 65, 66, 67, 67, 67, 68, 68, 72, 73, 73, 73, 73, 74, 74, 74, 74, 75, 75, 75, 75, 76, 76, 76, 76, 76, 76, 76, 76, 77, 77, 77, 78, 78, 78, 78, 78, 79, 79, 81, 81, 82, 82, 82, 83, 84, 84, 85, 85, 86, 86, 87, 87, 87, 87, 87, 88, 88, 88, 88, 88, 89, 90, 91, 91, 91, 91, 91, 92, 92, 92, 93, 93, 94, 94, 94, 96, 96, 96, 96, 96, 97, 98, 98, 99, 100, 100]
+Part-Time Students:
+PartTimeStudent1
+PartTimeStudent2
+PartTimeStudent3
+PartTimeStudent4
+PartTimeStudent5
+PartTimeStudent6
+PartTimeStudent7
+PartTimeStudent8
+PartTimeStudent9
+PartTimeStudent10
+Full-Time Students' Exam Scores:
+FullTimeStudent1 - Exam1: 62, Exam2: 88
+FullTimeStudent2 - Exam1: 35, Exam2: 19
+FullTimeStudent3 - Exam1: 73, Exam2: 61
+FullTimeStudent4 - Exam1: 28, Exam2: 84
+FullTimeStudent5 - Exam1: 79, Exam2: 27
+FullTimeStudent6 - Exam1: 83, Exam2: 30
+FullTimeStudent7 - Exam1: 24, Exam2: 95
+FullTimeStudent8 - Exam1: 58, Exam2: 82
+FullTimeStudent9 - Exam1: 92, Exam2: 70
+FullTimeStudent10 - Exam1: 10, Exam2: 53
+
+Process finished with exit code 0
