@@ -1,1 +1,128 @@
+import java.io.*;
 
+// Abstract base class Shape
+abstract class Shape implements Serializable {
+    private static final long serialVersionUID = 1L;
+    // Static field to represent the name of the class
+    static String shapeCategory = "Geometric Shape";
+    
+    // Abstract methods to be overridden by subclasses
+    abstract double calculateArea();
+    abstract double calculatePerimeter();
+    
+    // Concrete method
+    public void displayShapeCategory() {
+        System.out.println("Shape Category: " + shapeCategory);
+    }
+}
+
+// Triangle class demonstrating method overriding
+class Triangle extends Shape {
+    private static final long serialVersionUID = 1L;
+    private double base, height, side1, side2, side3;
+    
+    public Triangle(double base, double height, double side1, double side2, double side3) {
+        this.base = base;
+        this.height = height;
+        this.side1 = side1;
+        this.side2 = side2;
+        this.side3 = side3;
+    }
+    
+    @Override
+    double calculateArea() {
+        return 0.5 * base * height;
+    }
+    
+    @Override
+    double calculatePerimeter() {
+        return side1 + side2 + side3;
+    }
+}
+
+// Rectangle class
+class Rectangle extends Shape {
+    private static final long serialVersionUID = 1L;
+    private double length, width;
+    
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+    
+    @Override
+    double calculateArea() {
+        return length * width;
+    }
+    
+    @Override
+    double calculatePerimeter() {
+        return 2 * (length + width);
+    }
+}
+
+// Circle class
+class Circle extends Shape {
+    private static final long serialVersionUID = 1L;
+    private double radius;
+    private static final double PI = 3.14159;
+    
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+    
+    @Override
+    double calculateArea() {
+        return PI * radius * radius;
+    }
+    
+    @Override
+    double calculatePerimeter() {
+        return 2 * PI * radius;
+    }
+}
+
+// Square class (inherits from Rectangle)
+class Square extends Rectangle {
+    private static final long serialVersionUID = 1L;
+    public Square(double side) {
+        super(side, side);
+    }
+}
+
+// Main class to demonstrate polymorphism and serialization
+public class ShapeDemo {
+    public static void main(String[] args) {
+        Shape[] shapes = {
+            new Triangle(5, 4, 3, 4, 5),
+            new Rectangle(6, 3),
+            new Circle(4),
+            new Square(5)
+        };
+        
+        String filename = "shapes.ser";
+        
+        // Serialization
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            out.writeObject(shapes);
+            System.out.println("Shapes have been serialized.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // Deserialization
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            Shape[] deserializedShapes = (Shape[]) in.readObject();
+            System.out.println("Shapes have been deserialized.");
+            
+            for (Shape shape : deserializedShapes) {
+                shape.displayShapeCategory();
+                System.out.println("Area: " + shape.calculateArea());
+                System.out.println("Perimeter: " + shape.calculatePerimeter());
+                System.out.println();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
