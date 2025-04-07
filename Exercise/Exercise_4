@@ -4,19 +4,19 @@ public class RegexDemo {
     public static void main(String[] args) {
         // Define test cases
         String[][] testCases = {
-            {"Email", "^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,6}$", "test.email@example.com", "invalid-email"},
-            {"Phone", "^\(\d{3}\) \d{3}-\d{4}$", "(123) 456-7890", "123-456-7890"},
-            {"ZIP Code", "^\d{5}(-\d{4})?$", "12345", "1234"},
-            {"Date", "^\d{2}/\d{2}/\d{4}$", "12/31/2024", "31-12-2024"},
+            {"Email", "^[\\w.-]+@[a-zA-Z\\d.-]+\\.[a-zA-Z]{2,6}$", "test.email@example.com", "invalid-email"},
+            {"Phone", "^\\(\\d{3}\\) \\d{3}-\\d{4}$", "(123) 456-7890", "123-456-7890"},
+            {"ZIP Code", "^\\d{5}(-\\d{4})?$", "12345", "1234"},
+            {"Date", "^\\d{2}/\\d{2}/\\d{4}$", "12/31/2024", "31-12-2024"},
             {"Username", "^[a-zA-Z0-9_]{5,15}$", "user_123", "us"}
         };
-        
+
         for (String[] testCase : testCases) {
             String name = testCase[0];
             String pattern = testCase[1];
             String validInput = testCase[2];
             String invalidInput = testCase[3];
-            
+
             System.out.println("\nTesting " + name + " Pattern: " + pattern);
             testRegex(pattern, validInput, true);
             testRegex(pattern, invalidInput, false);
@@ -27,6 +27,7 @@ public class RegexDemo {
         Pattern regex = Pattern.compile(pattern);
         Matcher matcher = regex.matcher(input);
         boolean matches = matcher.matches();
-        System.out.println("Testing: " + input + " => " + (matches == expected ? "PASSED" : "FAILED"));
+        System.out.println("Testing: " + input + " (expected " + (expected ? "match" : "no match") + ") => " +
+                (matches == expected ? "PASSED" : "FAILED"));
     }
 }
