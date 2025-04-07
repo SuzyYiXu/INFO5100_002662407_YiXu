@@ -1,0 +1,99 @@
+=== ORIGINAL DATA ===
+
+XML Format:
+Total books found: 3
+
+Book #1
+Title: Java Programming
+Published Year: 2020
+Number of Pages: 450
+Authors: John Doe, Jane Smith
+
+Book #2
+Title: Python Basics
+Published Year: 2019
+Number of Pages: 320
+Authors: Alice Johnson
+
+Book #3
+Title: Data Structures
+Published Year: 2021
+Number of Pages: 600
+Authors: Robert Brown, Emily Davis, Michael Wilson
+
+JSON Format:
+Total books found: 3
+
+Book #1
+Title: Java Programming
+Published Year: 2020
+Number of Pages: 450
+Authors: John Doe, Jane Smith
+
+Book #2
+Title: Python Basics
+Published Year: 2019
+Number of Pages: 320
+Authors: Alice Johnson
+
+Book #3
+Title: Data Structures
+Published Year: 2021
+Number of Pages: 600
+Authors: Robert Brown, Emily Davis, Michael Wilson
+
+=== ADDING NEW BOOKS ===
+
+UPDATED XML (4 books total):
+Total books found: 4
+
+Book #1
+Title: Java Programming
+Published Year: 2020
+Number of Pages: 450
+Authors: John Doe, Jane Smith
+
+Book #2
+Title: Python Basics
+Published Year: 2019
+Number of Pages: 320
+Authors: Alice Johnson
+
+Book #3
+Title: Data Structures
+Published Year: 2021
+Number of Pages: 600
+Authors: Robert Brown, Emily Davis, Michael Wilson
+
+Book #4
+Title: Advanced Algorithms
+Published Year: 2022
+Number of Pages: 780
+Authors: Sarah Miller, David Taylor
+
+UPDATED JSON (4 books total):
+Total books found: 4
+
+Book #1
+Title: Java Programming
+Published Year: 2020
+Number of Pages: 450
+Authors: John Doe, Jane Smith
+
+Book #2
+Title: Python Basics
+Published Year: 2019
+Number of Pages: 320
+Authors: Alice Johnson
+
+Book #3
+Title: Data Structures
+Published Year: 2021
+Number of Pages: 600
+Authors: Robert Brown, Emily Davis, Michael Wilson
+
+Book #4
+Title: Advanced Algorithms
+Published Year: 2022
+Number of Pages: 780
+Authors: Sarah Miller, David Taylor
