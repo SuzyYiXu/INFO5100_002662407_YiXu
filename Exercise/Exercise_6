@@ -1,0 +1,167 @@
+import javax.crypto.*;
+import javax.crypto.spec.*;
+import java.security.*;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
+
+public class AliceAndBob {
+
+    public static void main(String[] args) throws Exception {
+        // Create Alice and Bob
+        Person alice = new Person("Alice");
+        Person bob = new Person("Bob");
+
+        System.out.println("==== SYMMETRIC ENCRYPTION DEMO (AES-256 GCM) ====");
+        String symmetricMessage = "This is a secret message from Alice to Bob using AES-256";
+        System.out.println("Original message: " + symmetricMessage);
+
+        // Alice encrypts the message with a shared secret key
+        Map<String, byte[]> encryptedData = alice.encryptWithSymmetricKey(symmetricMessage, bob.getSymmetricKey());
+        System.out.println("Encrypted message (Base64): " + 
+            Base64.getEncoder().encodeToString(encryptedData.get("cipherText")));
+
+        // Bob decrypts the message with the shared secret key
+        String decryptedMessage = bob.decryptWithSymmetricKey(encryptedData);
+        System.out.println("Decrypted message: " + decryptedMessage + "\n");
+
+        System.out.println("==== ASYMMETRIC ENCRYPTION DEMO (RSA-2048) ====");
+        String asymmetricMessage = "This is a secret message from Bob to Alice using RSA";
+        System.out.println("Original message: " + asymmetricMessage);
+
+        // Bob encrypts the message with Alice's public key
+        byte[] encryptedAsymmetric = bob.encryptWithAsymmetricKey(asymmetricMessage, alice.getPublicKey());
+        System.out.println("Encrypted message (Base64): " + 
+            Base64.getEncoder().encodeToString(encryptedAsymmetric));
+
+        // Alice decrypts the message with her private key
+        String decryptedAsymmetric = alice.decryptWithAsymmetricKey(encryptedAsymmetric);
+        System.out.println("Decrypted message: " + decryptedAsymmetric + "\n");
+
+        System.out.println("==== DIGITAL SIGNATURE DEMO (RSA-2048) ====");
+        String messageToSign = "This is an important message from Alice that needs verification";
+        System.out.println("Message to sign: " + messageToSign);
+
+        // Alice signs the message with her private key
+        Map<String, byte[]> signatureData = alice.signMessage(messageToSign);
+        System.out.println("Signature (Base64): " + 
+            Base64.getEncoder().encodeToString(signatureData.get("signature")));
+
+        // Bob verifies the signature with Alice's public key
+        boolean isVerified = bob.verifySignature(
+            messageToSign, 
+            signatureData.get("signature"), 
+            alice.getPublicKey()
+        );
+        System.out.println("Signature verified: " + isVerified);
+    }
+
+    static class Person {
+        private final String name;
+        private final SecretKey symmetricKey;
+        private final KeyPair asymmetricKeyPair;
+        private static final int AES_KEY_SIZE = 256;
+        private static final int RSA_KEY_SIZE = 2048;
+        private static final int GCM_IV_LENGTH = 12;
+        private static final int GCM_TAG_LENGTH = 16;
+
+        public Person(String name) throws Exception {
+            this.name = name;
+            this.symmetricKey = generateSymmetricKey();
+            this.asymmetricKeyPair = generateAsymmetricKeyPair();
+        }
+
+        private SecretKey generateSymmetricKey() throws Exception {
+            KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+            keyGen.init(AES_KEY_SIZE);
+            return keyGen.generateKey();
+        }
+
+        private KeyPair generateAsymmetricKeyPair() throws Exception {
+            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
+            keyPairGen.initialize(RSA_KEY_SIZE);
+            return keyPairGen.generateKeyPair();
+        }
+
+        public SecretKey getSymmetricKey() {
+            return symmetricKey;
+        }
+
+        public PublicKey getPublicKey() {
+            return asymmetricKeyPair.getPublic();
+        }
+
+        // Symmetric encryption (AES-256 GCM)
+        public Map<String, byte[]> encryptWithSymmetricKey(String message, SecretKey key) throws Exception {
+            byte[] iv = new byte[GCM_IV_LENGTH];
+            SecureRandom random = new SecureRandom();
+            random.nextBytes(iv);
+
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+            GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
+            cipher.init(Cipher.ENCRYPT_MODE, key, spec);
+
+            byte[] cipherText = cipher.doFinal(message.getBytes());
+
+            Map<String, byte[]> result = new HashMap<>();
+            result.put("iv", iv);
+            result.put("cipherText", cipherText);
+            return result;
+        }
+
+        // Symmetric decryption (AES-256 GCM)
+        public String decryptWithSymmetricKey(Map<String, byte[]> encryptedData) throws Exception {
+            byte[] iv = encryptedData.get("iv");
+            byte[] cipherText = encryptedData.get("cipherText");
+
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+            GCMParameterSpec spec = new GCMParameterSpec(GCM_TAG_LENGTH * 8, iv);
+            cipher.init(Cipher.DECRYPT_MODE, symmetricKey, spec);
+
+            byte[] decryptedText = cipher.doFinal(cipherText);
+            return new String(decryptedText);
+        }
+
+        // Asymmetric encryption (RSA-2048)
+        public byte[] encryptWithAsymmetricKey(String message, PublicKey publicKey) throws Exception {
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            return cipher.doFinal(message.getBytes());
+        }
+
+        // Asymmetric decryption (RSA-2048)
+        public String decryptWithAsymmetricKey(byte[] encryptedMessage) throws Exception {
+            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher.init(Cipher.DECRYPT_MODE, asymmetricKeyPair.getPrivate());
+            byte[] decryptedBytes = cipher.doFinal(encryptedMessage);
+            return new String(decryptedBytes);
+        }
+
+        // Create digital signature
+        public Map<String, byte[]> signMessage(String message) throws Exception {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initSign(asymmetricKeyPair.getPrivate());
+            signature.update(message.getBytes());
+
+            Map<String, byte[]> result = new HashMap<>();
+            result.put("message", message.getBytes());
+            result.put("signature", signature.sign());
+            return result;
+        }
+
+        // Verify digital signature
+        public boolean verifySignature(String message, byte[] signatureBytes, PublicKey publicKey) throws Exception {
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initVerify(publicKey);
+            signature.update(message.getBytes());
+            return signature.verify(signatureBytes);
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+    }
+}
