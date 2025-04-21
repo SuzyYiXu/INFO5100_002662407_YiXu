@@ -1,0 +1,29 @@
+// (b) Generic method to exchange elements in an array
+import java.util.Arrays;
+
+public class generic_exchange {
+    // Generic method to swap two elements in an array
+    public static <T> void swapElements(T[] array, int index1, int index2) {
+        if (index1 < 0 || index1 >= array.length ||
+                index2 < 0 || index2 >= array.length) {
+            throw new IllegalArgumentException("Invalid indices");
+        }
+
+        T temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        Integer[] intArray = {1, 2, 3, 4, 5};
+        System.out.println("Before swap: " + Arrays.toString(intArray));
+        swapElements(intArray, 1, 3);
+        System.out.println("After swap: " + Arrays.toString(intArray));
+
+        String[] strArray = {"apple", "banana", "cherry"};
+        System.out.println("Before swap: " + Arrays.toString(strArray));
+        swapElements(strArray, 0, 2);
+        System.out.println("After swap: " + Arrays.toString(strArray));
+    }
+}
