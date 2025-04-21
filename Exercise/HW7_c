@@ -1,0 +1,35 @@
+// (c) Generic method to find maximal element in a range
+import java.util.List;
+import java.util.Objects;
+
+public class generic_max {// Generic method to find maximal element in range [begin, end)
+    public static <T extends Comparable<? super T>> T findMaxInRange(
+            List<T> list, int begin, int end) {
+        Objects.requireNonNull(list);
+        if (begin < 0 || end > list.size() || begin >= end) {
+            throw new IllegalArgumentException("Invalid range");
+        }
+
+        T max = list.get(begin);
+        for (int i = begin + 1; i < end; i++) {
+            T current = list.get(i);
+            if (current.compareTo(max) > 0) {
+                max = current;
+            }
+        }
+        return max;
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        List<Integer> numbers = List.of(5, 3, 8, 1, 9, 4, 7);
+
+        // Find max in range [1, 5) - elements 3, 8, 1, 9
+        Integer max = findMaxInRange(numbers, 1, 5);
+        System.out.println("Max in range [1,5): " + max);  // Output: 9
+
+        List<String> words = List.of("apple", "banana", "cherry", "date");
+        String maxWord = findMaxInRange(words, 0, 3);
+        System.out.println("Max in range [0,3): " + maxWord);  // Output: "cherry"
+    }
+}
