@@ -1,0 +1,19 @@
+a) 
+Number of odd integers: 5
+Number of primes: 4
+
+Process finished with exit code 0
+
+b)
+Before swap: [1, 2, 3, 4, 5]
+After swap: [1, 4, 3, 2, 5]
+Before swap: [apple, banana, cherry]
+After swap: [cherry, banana, apple]
+
+Process finished with exit code 0
+
+c)
+Max in range [1,5): 9
+Max in range [0,3): cherry
+
+Process finished with exit code 0
