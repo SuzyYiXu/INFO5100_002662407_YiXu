@@ -1,0 +1,16 @@
+==== SYMMETRIC ENCRYPTION DEMO (AES-256 GCM) ====
+Original message: This is a secret message from Alice to Bob using AES-256
+Encrypted message (Base64): p/WTg2yLYSJI+vf6b9IlzQpaH4nLYQJ2JR6rhElD+/ThkwEz8mLquQCknASuUbNCqMseWfsveRjnKSkkYXzHFGEs39fBN3lD
+Decrypted message: This is a secret message from Alice to Bob using AES-256
+
+==== ASYMMETRIC ENCRYPTION DEMO (RSA-2048) ====
+Original message: This is a secret message from Bob to Alice using RSA
+Encrypted message (Base64): iJ9N6ih0oxKaWh/xwBB9iokp821MgTdm90zAG8Wdno8sCxz1dEyzjaGA7dOl+o8RlGtDkwoBmJhSwyDNpuX9pFnUkYEYv1m05teb9GkfxXGOrHfnMXH6mPbw6ri7YDX0J5/qOmn/6Fn/7y4FQfTNJzim/LDhUW7Lhx5T4xV2PNfS3RJqks1p4NaFn0SQPBv2pQ0i5XcG29vLCAODPSwgmlEIU3bI323kkzOHy0Ru8GgIL9LT/o9WN2KjL/+T1j2ymcsvFMP/iZ+N8fU4DptSZDdACIxi+i03xKbq8QRwM2UJfJ0061+CSet9nO1ZgrudJSdr27X03ZYkeWbOs+Vuuw==
+Decrypted message: This is a secret message from Bob to Alice using RSA
+
+==== DIGITAL SIGNATURE DEMO (RSA-2048) ====
+Message to sign: This is an important message from Alice that needs verification
+Signature (Base64): HSxmH0PcEAGrrktbwB23w+TsdHxShNU6ReUzaF2YCsMpZTCyJKkaU8TLOQI3N0r0T9asMEy9W+v94fmRSghZwogw66qecmpz/0sZly7JDvt2zEyht8Q/gURkByx1ZecEKHSebsPK5DyooAs8YpPv8vW6xgIzpFIEFOX0NiKaqlovQsaW+/QtHCEY18ySRtuLxUYReElQ+FUIiNyDoOoP6CjkG9TFWa5V16uKgCYEso7UjvNSZQiMwR8t9vlF63S1gCRleaMMod6cEcdjF1sjKetmc1QPVmsLruz+lIbEkniclY5AcFuF2j2xIFLgHWWhglSvQZmPksWdnvEW6N10SQ==
+Signature verified: true
+
+Process finished with exit code 0
