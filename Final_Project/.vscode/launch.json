@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "imagemanager.MainApp", // Replace with your actual main class name
+            "vmArgs": "--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-23.0.2/lib --add-modules javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
+            "name": "Attach to JavaFX Application",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005,
+            "preLaunchTask": "Run JavaFX Application"
+        }
+    ]
+}

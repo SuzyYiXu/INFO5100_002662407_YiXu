@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- This FXML file defines the layout for the main view of the Image Manager application. -->
+<!-- It includes a top section for controls, a center section for displaying images, and a right section for metadata. -->
+<!-- The layout uses JavaFX components such as HBox, VBox, FlowPane, and ScrollPane. -->
+<!-- The FXML file is linked to a controller class (MainController) that handles the logic for the UI. -->
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="imagemanager.controller.MainController">
+    <!-- The top section contains controls for uploading images and selecting formats -->
+    <top>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Button fx:id="btnUpload" text="Upload Image" onAction="#onUpload"/>
+            <Label text="Format:"/>
+            <ChoiceBox fx:id="formatChoiceBox"/>
+            <Button fx:id="btnConvert" text="Convert" onAction="#onConvert"/>
+        </HBox>
+    </top>
+    <!-- The center section displays thumbnails of the images -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <FlowPane fx:id="thumbnailPane" hgap="10" vgap="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+            </FlowPane>
+        </ScrollPane>
+    </center>
+    <!-- The right section displays metadata of the selected image -->
+    <right>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <Label text="Image Metadata"/>
+            <TextArea fx:id="metadataArea" prefRowCount="20" editable="false"/>
+        </VBox>
+    </right>
+</BorderPane>

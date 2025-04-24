@@ -1,0 +1,96 @@
+@startuml ImageManager_Standard_UML 
+' This file generates the class diagram that represents the structure of the image processing application
+
+' ==== Force Standard UML Style ====
+skinparam classFontColor #000000
+skinparam classFontName Helvetica
+skinparam classFontStyle plain
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor #FFFFFF
+skinparam classBorderColor #000000
+skinparam classArrowColor #000000
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+
+hide empty members
+hide circle
+
+' 1. Exception Class
+class ImageProcessingException {
+    +{static} <<extends Exception>>
+    +ImageProcessingException(message: String, cause: Throwable)
+}
+
+' 2. Core Model Class
+class ImageItem {
+    -file: File
+    -name: String
+    -width: int
+    -height: int
+    -metadata: Map<String,String>
+    +getFile(): File
+    +getName(): String
+    +getWidth(): int
+    +getHeight(): int
+    +getMetadata(): Map<String,String>
+}
+
+' 3. Converter Interface and Implementations
+interface ImageConverter {
+    +{abstract} convert(input: File, output: File) {throws ImageProcessingException}
+}
+
+class JPGConverter {
+    +convert(input: File, output: File) {throws ImageProcessingException}
+}
+
+class PNGConverter {
+    +convert(input: File, output: File) {throws ImageProcessingException}
+}
+
+' 4. Main Controller
+class MainController {
+    -thumbnailPane: FlowPane
+    -metadataArea: TextArea
+    -formatChoiceBox: ChoiceBox<String>
+    -images: List<ImageItem>
+    -selectedImage: ImageItem
+    +initialize(): void
+    +onUpload(): void
+    +onConvert(): void
+    -showMetadata(item: ImageItem): void
+    -getConverter(format: String): ImageConverter
+    -showAlert(title: String, msg: String): void
+}
+
+' 5. Utility Class
+class ImageMetadataUtil {
+    +{static} extractMetadata(file: File): Map<String,String>
+}
+
+' ===== RELATIONSHIPS =====
+ImageConverter <|.. JPGConverter
+ImageConverter <|.. PNGConverter
+
+MainController "1" *-- "many" ImageItem : contains >
+
+MainController ..> ImageConverter : «uses»
+MainController ..> ImageMetadataUtil : «uses»
+
+JPGConverter ..|> ImageProcessingException : throws
+PNGConverter ..|> ImageProcessingException : throws
+
+ImageMetadataUtil ..> ImageItem : populates metadata
+
+note top of ImageProcessingException
+    Custom exception for image processing failures
+    (Conversion errors, metadata extraction issues)
+end note
+
+note right of ImageConverter
+    **Strategy Pattern**
+    - Interface defines conversion contract
+    - Concrete implementations (JPG/PNG) are swappable
+end note
+
+@enduml
